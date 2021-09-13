@@ -47,6 +47,12 @@ export default class PostLists extends Component {
     });
   };
 
+  deleteTodo = (id) => {
+    this.setState({
+      todos: [...this.state.todos.filter((todo) => todo.id !== id)],
+    });
+  };
+
   render() {
     console.log(this.state);
     return (
@@ -88,7 +94,7 @@ export default class PostLists extends Component {
               <p
                 style={{
                   textDecoration: todo.completed ? "line-through" : "",
-                  width: "90%",
+                  width: "70%",
                 }}
                 key={todo.id}
               >
@@ -105,6 +111,19 @@ export default class PostLists extends Component {
                 }}
               >
                 {todo.completed ? "Undo" : "Done"}
+              </button>
+              <button
+                onClick={() => this.deleteTodo(todo.id)}
+                style={{
+                  height: "70%",
+                  width: "80px",
+                  backgroundColor: "red",
+                  color: "white",
+                  border: "none",
+                  marginLeft: "2px",
+                }}
+              >
+                Delete
               </button>
             </div>
           );
